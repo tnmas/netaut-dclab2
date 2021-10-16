@@ -1,0 +1,90 @@
+#playbook.yml
+---
+# Host viosswitch1
+- name: Beginning the process
+  hosts: switches
+  gather_facts: no
+  become: true
+
+  tasks:
+    - name: Creating VLANS
+      cisco.ios.ios_vlans:
+        config:
+        - name: Vlan4
+          vlan_id: 4
+          state: active
+        - name: Vlan5
+          vlan_id: 5
+          state: active
+        state: merged
+
+# Only Switch 1
+    - name: Switch 1 Interfaces configuration
+      cisco.ios.ios_l2_interfaces:
+        config:
+        - name: GigabitEthernet1/1
+          mode: trunk 
+          trunk:
+            encapsulation: dot1q
+        - name: GigabitEthernet1/2
+          mode: trunk 
+          trunk:
+            encapsulation: dot1q
+        state: merged
+      when: inventory_hostname == "viosswitch1"
+
+
+
+# Host viosswitch2
+
+# Only Switch 2
+    - name: Switch 2 interfaces configuration
+      cisco.ios.ios_l2_interfaces:
+        config: 
+        - name: GigabitEthernet0/3
+          mode: trunk 
+          trunk:
+            encapsulation: dot1q
+        state: merged
+      when: inventory_hostname == "viosswitch2"
+      
+
+
+# Host viosswitch3
+
+# Only Switch 3
+    - name: Switch 3 interfaces configuration
+      cisco.ios.ios_l2_interfaces:
+        config:
+        - name: GigabitEthernet0/3
+          mode: access
+          access:
+            vlan: 4
+        - name: GigabitEthernet0/2
+          mode: trunk
+          trunk:
+            encapsulation: dot1q
+        state: merged
+      when: inventory_hostname == "viosswitch3"
+      
+
+# Host viosswitch4
+
+# Only Switch 4
+    - name: Switch 4 interfaces configuration
+      cisco.ios.ios_l2_interfaces:
+        config:
+        - name: GigabitEthernet0/2
+          mode: trunk 
+          trunk:
+            encapsulation: dot1q
+        - name: GigabitEthernet0/3
+          mode: trunk 
+          trunk:
+            encapsulation: dot1q
+        - name: GigabitEthernet1/0
+          mode: access
+          access:
+            vlan: 5
+        state: merged
+      when: inventory_hostname == "viosswitch4"
