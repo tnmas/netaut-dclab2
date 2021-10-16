@@ -6,6 +6,9 @@
   gather_facts: no
   become: true
 
+  vars_files: 
+    - vault.yml
+
   tasks:
     - name: Creating VLANS
       cisco.ios.ios_vlans:
