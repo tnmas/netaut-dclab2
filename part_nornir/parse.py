@@ -25,11 +25,6 @@ def parse_config(task):
 def get_config(task):
     r = task.run(
         task=napalm_get,
-<<<<<<< HEAD
-        getters="config"
-=======
         getters="config",
-        retrieve="all"
->>>>>>> 759e9074b4fc9da362479eea2d3536026be78051
-    )
+        retrieve="all")
     task.host['config'] = r.result['config']['running']    
