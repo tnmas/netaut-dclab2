@@ -1,6 +1,6 @@
 from nornir import InitNornir
 from ttp import ttp
-from nornir.plugins.tasks import networking
+from nornir_napalm.plugins.tasks import napalm_get
 
 
 def parse_interfaces(config):
@@ -24,7 +24,8 @@ def parse_config(task):
 
 def get_config(task):
     r = task.run(
-        task=networking.napalm_get,
-        getters="config"
+        task=napalm_get,
+        getters="config",
+        retrieve="all"
     )
     task.host['config'] = r.result['config']['running']    

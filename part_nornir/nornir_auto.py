@@ -1,20 +1,20 @@
 from nornir import InitNornir
-from nornir.plugins.functions import print_title, print_result
-#Import Tasks from parse.py & new_configs.py
+from nornir_utils.plugins.functions import print_title, print_result
 from parse import get_config, parse_config
+from nornir_napalm.plugins.tasks import napalm_get, napalm_cli
+from nornir_netmiko.tasks import netmiko_send_command
 
 
-nr = InitNornir(config_file="config.yaml")
-switches = nr.filter(role="switch")
+nr = InitNornir(config_file="config.yml", dry_run=True)
+#switches = nr.filter(role="switch")
 
-username = input("Enter Username: ")
-password = input("Enter Password: ")
-nr.inventory.defaults.username = username
-nr.inventory.defaults.password = password
+#my_hosts = nr.inventory.hosts
+#host_keys = list(my_hosts.keys())
+result = nr.run( netmiko_send_command ,command_strings="show running-config")
 
-config = switches.run(name="Get Configurations",task=get_config)
-print_title(config)
+#config = switches.run(name="Get Configurations",task=get_config)
+#print_title(config)
 
-parsed = switches.run(name="Parse Configurations", task=parse_config)
-print_title(parsed)
-print_result(parsed)
+#parsed = switches.run(name="Parse Configurations", task=parse_config)
+#print_title(parsed)
+#print_result(parsed)
