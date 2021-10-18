@@ -5,12 +5,13 @@ from nornir_napalm.plugins.tasks import napalm_get, napalm_cli
 from nornir_netmiko.tasks import netmiko_send_command
 
 
+
 nr = InitNornir(config_file="config.yml", dry_run=True)
 #switches = nr.filter(role="switch")
 
 #my_hosts = nr.inventory.hosts
 #host_keys = list(my_hosts.keys())
-result = nr.run( netmiko_send_command ,command_strings="show running-config")
+result = nr.run( napalm_cli ,commands=["show running-config"])
 
 #config = switches.run(name="Get Configurations",task=get_config)
 #print_title(config)
