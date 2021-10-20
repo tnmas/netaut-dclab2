@@ -13,6 +13,7 @@ nr = InitNornir(config_file="config.yml", dry_run=True)
 #host_keys = list(my_hosts.keys())
 result = nr.run( napalm_cli ,commands=["show running-config"])
 
+print_result(result)
 #config = switches.run(name="Get Configurations",task=get_config)
 #print_title(config)
 
