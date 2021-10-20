@@ -4,6 +4,13 @@ from parse import get_config, parse_config
 from nornir_napalm.plugins.tasks import napalm_get, napalm_cli
 from nornir_netmiko.tasks import netmiko_send_command
 
+from nornir.core.plugins.connections import ConnectionPluginRegister
+import nornir_napalm.plugins.connections as napalm
+import nornir_netmiko.connections as netmiko
+
+ConnectionPluginRegister.register(napalm.CONNECTION_NAME, napalm.Napalm)
+ConnectionPluginRegister.register(netmiko.CONNECTION_NAME, netmiko.Netmiko)
+ConnectionPluginRegister.available
 
 
 nr = InitNornir(config_file="config.yml", dry_run=True)
@@ -11,7 +18,7 @@ nr = InitNornir(config_file="config.yml", dry_run=True)
 
 #my_hosts = nr.inventory.hosts
 #host_keys = list(my_hosts.keys())
-result = nr.run( napalm_cli ,commands=["show running-config"])
+result = nr.run(napalm_cli ,commands=["show running-config"])
 
 print_result(result)
 #config = switches.run(name="Get Configurations",task=get_config)
