@@ -1,4 +1,8 @@
 inventory:
-    plugin: AnsibleInventory
+    plugin: SimpleInventory
     options:
-        hostsfile: "./inventory.ini"
+        host_file: "inventory/hosts.yml"
+    runner:
+        plugin: threaded
+        options:
+            num_workers: 100

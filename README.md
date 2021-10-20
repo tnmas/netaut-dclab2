@@ -36,6 +36,8 @@ pip install nornir
 pip install nornir-napalm  // Napalm for the connections
 pip install nornir-utils   // 
 pip install nornir_ansible
+pip install nornir-jinja2
+pip install nornir-netmiko
 ```
 
 
