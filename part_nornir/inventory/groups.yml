@@ -1,6 +1,6 @@
 ---
 cisco: 
-  username: cisco
-  password: cisco
-  platform: ios
+  username: "cisco"
+  password: "cisco"
+  platform: "ios"
   data: {}

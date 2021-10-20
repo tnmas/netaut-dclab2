@@ -7,7 +7,6 @@ from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.plugins.connections import ConnectionPluginRegister
 import nornir_napalm.plugins.connections as napalm
 import nornir_netmiko.connections as netmiko
-from napalm.ios import IOSDriver
 
 ConnectionPluginRegister.register(napalm.CONNECTION_NAME, napalm.Napalm)
 ConnectionPluginRegister.register(netmiko.CONNECTION_NAME, netmiko.Netmiko)
