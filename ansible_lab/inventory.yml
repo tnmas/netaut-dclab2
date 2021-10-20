@@ -2,7 +2,7 @@ all:
   children:
     switches:
       children:
-        distribution:
+        intermediate:
           hosts:  
             viosswitch1:
               ansible_host: "172.16.0.11"
