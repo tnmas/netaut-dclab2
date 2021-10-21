@@ -5,7 +5,7 @@ vlan 5
 
 !
 {% for i in access_ports %}
-{% if i['interface'] is  switch3_interface %}
+{% if (i['interface']).endswith('3') %}
 interface {{i['interface']}}
  switchport access vlan 4
 {% else %}
