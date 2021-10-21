@@ -20,7 +20,7 @@ def parse_config(task):
     if task.host.hostname == '172.16.0.13':
         for i in task.host['interfaces']:
             print("Interface name is: ")
-            print(i)
+            print(i["interface"])
             sys.die()
         task.host['access_ports'] = [interface for interface in task.host['interfaces']
                                       if interface['mode'] == 'access'
