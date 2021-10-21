@@ -17,5 +17,11 @@ nr = InitNornir(config_file="config.yml", dry_run=True)
 
 result = nr.run(napalm_cli ,commands=["show ip interface brief"])
 
-print_result(result)
+#print_result(result)
+
+hosts = nr.inventory.hosts
+
+for host in hosts:
+  res = host.run(napalm_cli ,commands=["show ip interface brief"])
+  print_result(res)
 
