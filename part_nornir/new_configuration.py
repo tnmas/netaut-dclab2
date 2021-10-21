@@ -9,8 +9,7 @@ def build_config(task):
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
-                access_ports_4=task.host['access_port_4'],
-                access_ports_5=task.host['access_port_5'],
+                access_ports=task.host['access_port'],
                 trunk_ports=task.host['trunk_ports'],
                 severity_level=logging.DEBUG
                 )
