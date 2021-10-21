@@ -20,8 +20,10 @@ def parse_config(task):
     task.host['trunk_ports'] = [interface for interface in task.host['interfaces']
                                      if interface['mode'] == 'trunk']
 
-    print("Access ports: " + task.host['access_ports'])
-    print("Trunk ports: " + task.host['trunk_ports'])
+    print("Access ports:")
+    print(task.host['access_ports'])
+    print("Access ports:")
+    print(task.host['trunk_ports'])
 
 def get_config(task):
     r = task.run(
