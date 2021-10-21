@@ -1,5 +1,5 @@
 from nornir import InitNornir
-from nornir.plugins.tasks import text
+from nornir.plugins.functions import text
 from nornir_napalm.plugins.tasks import napalm_configure
 import logging
 
