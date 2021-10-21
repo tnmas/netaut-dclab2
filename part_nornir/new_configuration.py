@@ -1,5 +1,6 @@
 from nornir import InitNornir
-from nornir.plugins.tasks import networking, text
+from nornir.plugins.tasks import text
+from nornir_napalm.plugins.tasks import napalm_configure
 import logging
 
 
@@ -19,7 +20,7 @@ def build_config(task):
 
     task.host['nconfig'] = r.result
 
-    task.run(task=networking.napalm_configure,
+    task.run(task=napalm_configure,
             name="Loading Configuration on the switch",
             replace=False,
             configuration=task.host['nconfig'],
