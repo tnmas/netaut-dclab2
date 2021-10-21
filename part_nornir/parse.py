@@ -17,12 +17,12 @@ def parse_config(task):
     if task.host.hostname == '172.16.0.13':
         for i in task.host['interfaces']:
             if i['interface'] == 'GigabitEthernet0/3':
-                task.host['access_port_4'] = i['interface']
+                task.host['access_port'] = i['interface']
     
     if task.host.hostname == '172.16.0.14':
         for i in task.host['interfaces']:
             if i['interface'] == 'GigabitEthernet1/0':
-                task.host['access_port_5'] = i['interface']
+                task.host['access_port'] = i['interface']
 
     task.host['trunk_ports'] = [interface for interface in task.host['interfaces']
                                      if interface['mode'] == 'trunk']
