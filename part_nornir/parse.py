@@ -10,7 +10,10 @@ def parse_interfaces(config):
     return interfaces
 
 def parse_config(task):
+    get_config(task)
+    
     print('Parsing config for ' + task.host.hostname)
+    
 
     task.host['interfaces'] = [interface for interface in parse_interfaces(task.host['config'])
                              if 'mode' in interface.keys()]
@@ -25,5 +28,5 @@ def get_config(task):
     r = task.run(
         task=napalm_get,
         getters="config",
-        retrieve="all")
+        retrieve="running")
     task.host['config'] = r.result['config']['running']    
