@@ -19,8 +19,7 @@ def parse_config(task):
         task.host['access_ports'] = [interface for interface in task.host['interfaces']
                                       if interface['mode'] == 'access'
                                       and 'access_vlan' in interface.keys()]
-        print("Access ports:")
-        print(task.host['access_ports'])
+                                      
     task.host['trunk_ports'] = [interface for interface in task.host['interfaces']
                                      if interface['mode'] == 'trunk']
 
