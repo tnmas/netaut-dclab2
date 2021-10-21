@@ -15,13 +15,11 @@ ConnectionPluginRegister.available
 
 nr = InitNornir(config_file="config.yml", dry_run=True)
 
-result = nr.run(napalm_cli ,commands=["show ip interface brief"])
+#result = nr.run(napalm_cli ,commands=["show ip interface brief"])
 
 #print_result(result)
 
-hosts = nr.inventory.hosts
-
-for host in hosts:
-  res = host.run(napalm_cli ,commands=["show ip interface brief"])
-  print_result(res)
+parsed = nr.run(name="Parse Configurations", task=parse_config)
+print_title(parsed)
+print_result(parsed)
 

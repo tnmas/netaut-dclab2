@@ -2,3 +2,15 @@ vlan 4
   name Vlan4
 vlan 5
   name Vlan5
+
+!
+{% for i in access_ports_4 %}
+interface {{i['interface']}}
+ switchport access vlan 4
+{% endfor %}
+!
+{% for i in access_ports_5 %}
+interface {{i['interface']}}
+ switchport access vlan 5
+{% endfor %}
+!
