@@ -15,7 +15,7 @@ ConnectionPluginRegister.available
 
 nr = InitNornir(config_file="config.yml", dry_run=True)
 
-result = nr.run(napalm_cli ,commands=["show ip interfaces brief"])
+result = nr.run(napalm_cli ,commands=["show ip interface brief"])
 
 print_result(result)
 
