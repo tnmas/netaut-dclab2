@@ -1,11 +1,11 @@
 from nornir import InitNornir
-from nornir.plugins.functions import text
+from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_configure
 import logging
 
 
 def build_config(task):
-    r = task.run(task=text.template_file,
+    r = task.run(task=template_file,
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
