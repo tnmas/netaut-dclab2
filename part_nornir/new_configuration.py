@@ -5,14 +5,11 @@ import logging
 
 
 def build_config(task):
-    if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13':
-        access_ports=task.host['access_ports'] 
-
     r = task.run(task=template_file,
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
-                access_ports=access_ports,
+                access_ports=task.host['access_ports'] if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13' else "",
                 trunk_ports=task.host['trunk_ports'],
                 severity_level=logging.DEBUG
                 )
