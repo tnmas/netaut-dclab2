@@ -5,7 +5,7 @@ vlan 5
 
 !
 {% for i in access_ports %}
-{% if i['interface'] is GigabitEthernet0/2|safe %}
+{% if i['interface'] is GigabitEthernet0/3|safe %}
 interface {{i['interface']}}
  switchport access vlan 4
 {% else %}
