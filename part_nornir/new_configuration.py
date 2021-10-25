@@ -11,7 +11,8 @@ def build_config(task):
                 path=f"templates",
                 access_ports=task.host['access_ports'] if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13' else "",
                 trunk_ports=task.host['trunk_ports'],
-                severity_level=logging.DEBUG
+                severity_level=logging.DEBUG,
+                replace=True
                 )
 
     cmds = r.result
