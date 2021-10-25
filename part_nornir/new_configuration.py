@@ -1,7 +1,6 @@
 from nornir import InitNornir
 from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_configure
-from nornir_netmiko.tasks import netmiko_send_command, netmiko_send_config
 import logging
 
 
@@ -20,9 +19,9 @@ def build_config(task):
 
     task.host['nconfig'] = r.result
 
-    task.run(task=netmiko_send_config,
+    task.run(task=napalm_configure,
             name="Loading Configuration on the switch",
-            replace=False,
-            config_commands=task.host['nconfig'],
+            replace=True,
+            configuration=task.host['nconfig'],
             severity_level=logging.INFO
             )
