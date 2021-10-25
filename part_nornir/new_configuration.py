@@ -9,10 +9,10 @@ def build_config(task):
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
-                access_ports=task.host['access_ports'] if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13' else "",
+                access_ports_1=task.host['access_ports'] if task.host.hostname == '172.16.0.13' else "", 
+                access_ports_2 =task.host['access_ports'] if task.host.hostname == '172.16.0.13' else "",
                 trunk_ports=task.host['trunk_ports'],
-                severity_level=logging.DEBUG,
-                replace=True
+                severity_level=logging.DEBUG
                 )
 
     cmds = r.result
