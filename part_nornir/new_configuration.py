@@ -31,7 +31,7 @@ def build_config(task):
 
     cmds = r.result
     #print(r.access_ports)
-    print(cmds)
+    print(task.host['access_ports'])
 
     task.host['nconfig'] = r.result
 
