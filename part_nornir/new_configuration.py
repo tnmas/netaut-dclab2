@@ -23,7 +23,7 @@ int_access = [
 ]
 
 def build_config(task):
-    all_interfaces = task.run(task=napalm_get, getters=["config", "interfaces"])
+    all_interfaces = task.run(task=napalm_get, getters=["interfaces"])
 
     r = task.run(task=template_file,
                 name="New Configuration",
