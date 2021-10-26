@@ -2,19 +2,20 @@ vlan 4
   name Vlan4
 vlan 5
   name Vlan5
-
 !
 
-{% for i in access_ports_1 %}
-interface {{i['interface']}}
- switchport mode access
- switchport access vlan 4
-{% endfor %}
-!
 
-{% for i in access_ports_2 %}
-interface {{i['interface']}}
- switchport mode access
- switchport access vlan 5
+{% for i in access_ports %}
+  {% for int in interfaces %}
+    {% if int.name ==  i['interface'] and int.id == "1" %}
+      interface {{i['interface']}}
+        switchport mode access
+        switchport access vlan 4
+    {%elif int.name ==  i['interface'] and int.id == "2" %}
+      interface {{i['interface']}}
+        switchport mode access
+        switchport access vlan 5
+    {% endif %}
+  {% endfor %}
 {% endfor %}
 !

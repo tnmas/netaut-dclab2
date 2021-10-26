@@ -3,16 +3,30 @@ from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_configure
 import logging
 
+interfaces = [
+  {
+    "id": "1",
+    "name": "GigabitEthernet0/3",
+    "mode": "access",
+    "vlan": "4"
+  },
+  {
+    "id": "2",
+    "name": "GigabitEthernet1/0",
+    "mode": "access",
+    "vlan": "5"
+  }
+]
 
 def build_config(task):
     r = task.run(task=template_file,
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
-                access_ports_1=task.host['access_ports'] if task.host.hostname == '172.16.0.13' else "", 
-                access_ports_2 =task.host['access_ports'] if task.host.hostname == '172.16.0.13' else "",
+                access_ports=task.host['access_ports'] if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13' else "", 
                 trunk_ports=task.host['trunk_ports'],
-                severity_level=logging.DEBUG
+                severity_level=logging.DEBUG,
+                interfaces=interfaces
                 )
 
     cmds = r.result
