@@ -4,15 +4,17 @@ vlan 5
   name Vlan5
 
 !
-
+{% if access_ports_1%}
 {% for i in access_ports_1 %}
 interface {{i['interface']}}
+ switchport mode access
  switchport access vlan 4
 {% endfor %}
 !
 
 {% for i in access_ports_2 %}
 interface {{i['interface']}}
+ switchport mode access
  switchport access vlan 5
 {% endfor %}
 !
