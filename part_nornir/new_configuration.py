@@ -23,7 +23,7 @@ def build_config(task):
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
-                interfaces=task.host['interface'],
+                interfaces=task.host.interface,
                 #access_ports=task.host['access_ports'] if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13' else "", 
                 #trunk_ports=task.host['trunk_ports'],
                 severity_level=logging.DEBUG,
@@ -32,7 +32,7 @@ def build_config(task):
 
     cmds = r.result
     #print(r.access_ports)
-    print(task.host['interface'])
+    print(task.host.interface)
 
     task.host['nconfig'] = r.result
 
