@@ -5,8 +5,8 @@ vlan 5
 !
 
 
-{% for i in access_ports %}
-  {% for int in interfaces %}
+{% for i in interfaces %}
+  {% for int in int_access %}
     {% if int.name ==  i['interface'] and int.id == "1" %}
       interface {{i['interface']}}
         switchport mode access
@@ -15,6 +15,10 @@ vlan 5
       interface {{i['interface']}}
         switchport mode access
         switchport access vlan 5
+    {% else %}
+      interface {{i['interface']}}
+        switchport mode trunk
+        switchport trunk encapsulation dot1q
     {% endif %}
   {% endfor %}
 {% endfor %}
