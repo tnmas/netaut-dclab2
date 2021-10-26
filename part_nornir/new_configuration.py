@@ -10,35 +10,34 @@ int_access = [
     "id": "1",
     "name": "GigabitEthernet0/3",
     "mode": "access",
-    "vlan": "4"
+    "vlan": "4",
+    "hostname": "172.16.0.13"
   },
   {
     "id": "2",
     "name": "GigabitEthernet1/0",
     "mode": "access",
-    "vlan": "5"
+    "vlan": "5",
+    "hostname": "172.16.0.14"
   }
 ]
 
 def build_config(task):
-    interfaces = task.run(task=napalm_get, getters=["config", "interfaces"])
-    print("All interfaces")
-    print_result(interfaces)
+    all_interfaces = task.run(task=napalm_get, getters=["config", "interfaces"])
 
     r = task.run(task=template_file,
                 name="New Configuration",
                 template="vlans.j2",
                 path=f"templates",
-                #interfaces=task.host.interface,
-                #access_ports=task.host['access_ports'] if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.13' else "", 
-                #trunk_ports=task.host['trunk_ports'],
+                interfaces=all_interfaces,
+                host_name=task.host.hostname,
                 severity_level=logging.DEBUG,
                 int_access=int_access
                 )
 
     cmds = r.result
     #print(r.access_ports)
-    #print(cmds)
+    print(cmds)
 
     task.host['nconfig'] = r.result
 
