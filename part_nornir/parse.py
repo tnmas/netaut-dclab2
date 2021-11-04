@@ -11,18 +11,15 @@ def parse_interfaces(config):
 
 def parse_config(task):
     get_config(task)
-    print(parse_interfaces(task.host['config']))
     
     task.host['interfaces'] = [interface for interface in parse_interfaces(task.host['config'])
                              if 'mode' in interface.keys()]
     
     if task.host.hostname == '172.16.0.13' or task.host.hostname == '172.16.0.14':  
         task.host['access_ports'] = [interface for interface in task.host['interfaces']
-                                      if interface['mode'] == 'access'
-                                      and 'access_vlan' in interface.keys()]
+                                      if interface['mode'] == 'access']
     task.host['trunk_ports'] = [interface for interface in task.host['interfaces']
                                      if interface['mode'] == 'trunk']
-
 
 
 def get_config(task):

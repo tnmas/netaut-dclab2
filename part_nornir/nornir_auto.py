@@ -14,9 +14,9 @@ ConnectionPluginRegister.available
 
 nr = InitNornir(config_file="config.yml", dry_run=True)
 
-parsed = nr.run(name="Parse Configurations", task=parse_config)
-#print_title(parsed)
-#print_result(parsed)
+parsed = nr.run(name="Parsed Configurations", task=parse_config)
+print_title(parsed)
+print_result(parsed)
 
 #new_config = nr.run(name="Building New Configs", task=build_config)
 #print_result(new_config)
