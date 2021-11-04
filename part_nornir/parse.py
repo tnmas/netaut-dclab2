@@ -11,7 +11,7 @@ def parse_interfaces(config):
 
 def parse_config(task):
     get_config(task)
-    print(get_config(task))
+    print(parse_interfaces(task.host['config']))
     
     task.host['interfaces'] = [interface for interface in parse_interfaces(task.host['config'])
                              if 'mode' in interface.keys()]
