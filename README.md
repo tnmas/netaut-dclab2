@@ -1,6 +1,6 @@
 ## Getting Started
 
-These instructions describe what you need, so that you will be able to run the automation scripts run in your machine.
+These instructions describe what you need, so that you will be able to run the automation scripts in your machine.
 
 ## Part_1 => Ansible
 
@@ -19,8 +19,8 @@ pip install ansible
 ### Command used to run the playbook
 
 ```
-ansible-playbook -i inventory.ini --vault-id @prompt playbook.yml -K
-vault.yml encryption password => 123abc
+cd '$FOLDER_LOCATION/part_ansible/'
+ansible-playbook playbook.yml -i inventory.yml
 ```
 
 ## Part_2 => Nornir

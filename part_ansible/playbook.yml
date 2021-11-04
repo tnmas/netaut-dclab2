@@ -1,7 +1,7 @@
 #playbook.yml
 ---
 # Host viosswitch1
-- name: Beginning the process
+- name: Starting the Configuration
   hosts: switches
   gather_facts: no
   become: true
