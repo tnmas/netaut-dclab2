@@ -1,7 +1,7 @@
 from nornir import InitNornir
 from nornir_utils.plugins.functions import print_title, print_result
 from parse import get_config, parse_config
-from new_configuration import build_config
+from new_configs import build_config
 from nornir_napalm.plugins.tasks import napalm_get, napalm_cli
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.plugins.connections import ConnectionPluginRegister
@@ -14,10 +14,10 @@ ConnectionPluginRegister.available
 
 nr = InitNornir(config_file="config.yml", dry_run=True)
 
-parsed = nr.run(name="Parsed Configurations", task=parse_config)
+parsed = nr.run(name="Parsed Configs.....", task=parse_config)
 print_title(parsed)
 print_result(parsed)
 
-#new_config = nr.run(name="Building New Configs", task=build_config)
-#print_result(new_config)
+new_config = nr.run(name="New Configs.....", task=build_config)
+print_result(new_config)
 

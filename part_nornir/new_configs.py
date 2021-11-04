@@ -26,12 +26,11 @@ def build_config(task):
     all_interfaces = task.run(task=napalm_get, getters=["interfaces"])
 
     r = task.run(task=template_file,
-                name="New Configuration",
+                name="New Configuration.....",
                 template="vlans.j2",
                 path=f"templates",
                 interfaces=all_interfaces,
                 host_name=task.host.hostname,
-                severity_level=logging.DEBUG,
                 int_access=int_access
                 )
 
@@ -42,7 +41,7 @@ def build_config(task):
     task.host['nconfig'] = r.result
 
     task.run(task=napalm_configure,
-            name="Loading Configuration on the switch",
+            name="Getting Running Config.....",
             replace=True,
             configuration=task.host['nconfig'],
             severity_level=logging.INFO
