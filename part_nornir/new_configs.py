@@ -41,7 +41,7 @@ def build_config(task):
     task.host['nconfig'] = r.result
 
     task.run(task=napalm_configure,
-            name="Getting Running Config.....",
+            name="Running new Config.....",
             replace=True,
             configuration=task.host['nconfig'],
             severity_level=logging.INFO

@@ -4,7 +4,7 @@ vlan 5
   name Vlan5
 !
 
-{% for i in interfaces %}
+{% for i, data in interfaces.items() %}
   {% for int in int_access %}
     {% if int.name ==  i and int.id == "1" and int.hostname == hostname%}
       interface {{i}}
