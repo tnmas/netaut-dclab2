@@ -24,6 +24,7 @@ int_access = [
 
 def build_config(task):
     all_interfaces = task.run(task=napalm_get, getters=["interfaces"])
+    interface_accessport=int_access
 
     r = task.run(task=template_file,
                 name="New Configuration.....",
@@ -31,7 +32,7 @@ def build_config(task):
                 path=f"templates",
                 interfaces=all_interfaces,
                 host_name=task.host.hostname,
-                int_access=int_access
+                int_access=interface_accessport
                 )
 
     cmds = r.result

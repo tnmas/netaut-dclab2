@@ -4,17 +4,15 @@ vlan 5
   name Vlan5
 !
 
-{% for i, data in interfaces.items() %}
-  {% for int in int_access %}
-    {% if int.name ==  i and int.id == "1" and int.hostname == hostname%}
-      interface {{i}}
-        switchport mode access
-        switchport access vlan 4
-    {%elif int.name ==  i and int.id == "2" and int.hostname == hostname%}
-      interface {{i}}
-        switchport mode access
-        switchport access vlan 5
-    {% endif %}
-  {% endfor %}
+{% for i in int_access %}
+  {% if i.id == 1 and i.hostname == hostname %}
+   interface {{i.name}}
+      switchport mode access
+      switchport access vlan 4
+  {% elif i.id == 2 and i.hostname == hostname %}
+    interface {{i.name}}
+      switchport mode access
+      switchport access vlan 5
+  {% endif %}
 {% endfor %}
 !
