@@ -14,10 +14,6 @@ vlan 5
       interface {{i}}
         switchport mode access
         switchport access vlan 5
-    {% else %}
-      interface {{i}}
-        switchport mode trunk
-        switchport trunk encapsulation dot1q
     {% endif %}
   {% endfor %}
 {% endfor %}
