@@ -1,5 +1,4 @@
 from nornir_netmiko import netmiko_send_config
-from nornir import InitNornir
 from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_get
 
