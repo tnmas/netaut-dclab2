@@ -1,7 +1,7 @@
 from nornir_netmiko import netmiko_send_config
 from nornir import InitNornir
 from nornir_jinja2.plugins.tasks import template_file
-from nornir_napalm.plugins.tasks import napalm_configure, napalm_get
+from nornir_napalm.plugins.tasks import napalm_get
 from nornir_utils.plugins.functions.print_result import print_result
 import logging
 
@@ -30,14 +30,11 @@ def build_config(task):
                 host_name=task.host.hostname,
                 interface_accessport=interface_accessport
                 )
-
-    cmds = r.result
-    print(cmds)
-
+                
     task.host['nconfig'] = r.result
 
     task.run(task=netmiko_send_config,
-            config_commands=cmds,
+            config_commands=task.host['nconfig'],
             name="Running new Config.....",
             severity_level=logging.INFO
             )
