@@ -1,4 +1,4 @@
-from nornir_netmiko import netmiko_send_config
+from netmiko import send_config_from_file
 from nornir import InitNornir
 from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_configure, napalm_get
@@ -36,7 +36,7 @@ def build_config(task):
 
     task.host['nconfig'] = r.result
 
-    task.run(task=netmiko_send_config,
+    task.run(task=send_config_from_file,
             name="Running new Config.....",
             replace=True,
             configuration=task.host['nconfig'],

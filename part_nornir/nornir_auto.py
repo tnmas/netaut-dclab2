@@ -9,7 +9,7 @@ import nornir_netmiko.connections as netmiko
 ConnectionPluginRegister.register(netmiko.CONNECTION_NAME, netmiko.Netmiko)
 ConnectionPluginRegister.available
 
-nr = InitNornir(config_file="config.yml", dry_run=True)
+nr = InitNornir(config_file="config.yml")
 
 parsed = nr.run(name="Parsed Configs.....", task=parse_config)
 #print_title(parsed)
