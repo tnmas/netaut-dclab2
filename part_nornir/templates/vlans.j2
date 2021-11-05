@@ -3,12 +3,11 @@ vlan 4
 vlan 5
   name Vlan5
 !
-
 {% for int, data in interface_accessport.items() %}
-  {% if host_name == data.hostname %}
-    interface {{int}}
-      switchport mode {{data.mode}}
-      switchport access vlan {{data.vlan}}
-  {% endif %}
+{% if host_name == data.hostname %}
+interface {{int}}
+switchport mode {{data.mode}}
+switchport access vlan {{data.vlan}}
+{% endif %}
 {% endfor %}
 !
