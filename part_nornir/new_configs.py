@@ -39,7 +39,5 @@ def build_config(task):
     task.run(task=netmiko_send_config,
             config_commands=cmds,
             name="Running new Config.....",
-            replace=True,
-            configuration=task.host['nconfig'],
             severity_level=logging.INFO
             )
