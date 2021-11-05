@@ -5,22 +5,18 @@ import logging
 
 from nornir_utils.plugins.functions.print_result import print_result
 
-int_access = [
-  {
-    "id": "1",
-    "name": "GigabitEthernet0/3",
+int_access = {
+  "GigabitEthernet0/3": {
     "mode": "access",
     "vlan": "4",
     "hostname": "172.16.0.13"
   },
-  {
-    "id": "2",
-    "name": "GigabitEthernet1/0",
+  "GigabitEthernet1/0": {
     "mode": "access",
     "vlan": "5",
     "hostname": "172.16.0.14"
   }
-]
+}
 
 def build_config(task):
     all_interfaces = task.run(task=napalm_get, getters=["interfaces"])
@@ -30,9 +26,9 @@ def build_config(task):
                 name="New Configuration.....",
                 template="vlans.j2",
                 path=f"templates",
-                interfaces=all_interfaces,
+                all_interfaces=all_interfaces,
                 host_name=task.host.hostname,
-                int_access=interface_accessport
+                interface_accessport=interface_accessport
                 )
 
     cmds = r.result
