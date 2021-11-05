@@ -8,6 +8,8 @@ vlan 5
 interface {{int}}
   switchport mode {{data.mode}}
   switchport access vlan {{data.vlan}}
+  media-type rj45
+  negotiation auto
 {% endif %}
 {% endfor %}
 !
