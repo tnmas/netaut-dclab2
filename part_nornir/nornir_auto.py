@@ -13,8 +13,8 @@ ConnectionPluginRegister.available
 nr = InitNornir(config_file="config.yml")
 
 parsed = nr.run(name="Parsed Configs.....", task=parse_config)
-#print_title(parsed)
-#print_result(parsed)
+print_title(parsed)
+print_result(parsed)
 
 new_config = nr.run(name="New Configs.....", task=build_config)
 print_result(new_config)
