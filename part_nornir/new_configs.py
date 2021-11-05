@@ -32,7 +32,6 @@ def build_config(task):
                 )
 
     cmds = r.result
-    print(task.host.hostname)
     print(cmds)
 
     task.host['nconfig'] = r.result
