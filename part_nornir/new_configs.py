@@ -30,11 +30,12 @@ def build_config(task):
                 host_name=task.host.hostname,
                 interface_accessport=interface_accessport
                 )
-                
+
     task.host['nconfig'] = r.result
 
     task.run(task=netmiko_send_config,
             config_commands=task.host['nconfig'],
             name="Running new Config.....",
+            cmd_verify=False,
             severity_level=logging.INFO
             )
