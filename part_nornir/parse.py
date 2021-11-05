@@ -1,4 +1,3 @@
-from nornir import InitNornir
 from ttp import ttp
 from nornir_napalm.plugins.tasks import napalm_get
 

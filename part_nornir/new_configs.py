@@ -2,8 +2,6 @@ from nornir_netmiko import netmiko_send_config
 from nornir import InitNornir
 from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_get
-from nornir_utils.plugins.functions.print_result import print_result
-import logging
 
 int_access = {
   "GigabitEthernet0/3": {
@@ -36,6 +34,5 @@ def build_config(task):
     task.run(task=netmiko_send_config,
             config_commands=task.host['nconfig'],
             name="Running new Config.....",
-            cmd_verify=False,
-            severity_level=logging.INFO
+            cmd_verify=False            
             )
